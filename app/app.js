@@ -6,10 +6,11 @@ dotenv.config();
 
 const app = express();
 
-
-
 // 라우팅
 const home = require("./src/routes/home");
+
+// const logger = require("./src/config/logger");
+// logger.log("info", "할 수 있냐? 노드!");
 
 // 앱 세팅
 app.set("views", "./src/views");
