@@ -2,7 +2,7 @@ const { createLogger, transports, format } = require("winston");
 const { combine, timestamp, label, simple, colorize , printf} = format;
 
 const printFormat = printf(({ timestamp, label,level, message }) => {
-                return `${timestamp} [ ${label} - level:${level}] ${message}`;
+                return `${timestamp} [ ${label} :${level}] ${message}`;
             });
 
 const printLogFormat = {
@@ -41,5 +41,9 @@ const logger = createLogger({
 if (process.env.NODE_ENV !== "production") {
     logger.add( opts.console );
 }
+
+logger.stream = {
+    write: (message) => logger.info(message),
+};
 
 module.exports = logger;
